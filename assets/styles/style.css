@@ -80,6 +80,10 @@ label {
   margin-bottom: 30px;
 }
 
+.no-border {
+  border: none;
+}
+
 .long-input {
   width: 60vw;
   max-width: 900px;
@@ -111,7 +115,7 @@ option {
   font-size: 12px;
 }
 
-.dist-bottom {
+.extra-bottom {
   margin-bottom: 12px;
 }
 
@@ -139,7 +143,7 @@ option {
   text-align: end;
 }
 
-.checkbox {
+.container-checkbox {
   margin: 0 0 40px 100px;
 }
 
@@ -152,22 +156,18 @@ option {
   padding-bottom: 30px;
 }
 
-.file-upload-input {
-  opacity: 0;
-  position: absolute;
-}
-
 .dist-file-upload {
   margin-left: 44vw;
-}
-
-.submit-form {
-  border: none;
 }
 
 .submit-form-details {
   padding-top: 10px;
   padding-bottom: 20px;
+}
+
+/*Hidden classes*/
+.hidden {
+  display: none;
 }
 
 /*Button style*/

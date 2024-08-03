@@ -6,30 +6,31 @@
   <link rel="stylesheet" href="./assets/styles/normalize.css">
   <link rel="stylesheet" href="./assets/styles/style.css">
   <title>ApplicationForm</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
   <main>
     <h1 class="title">Заявление на назначение и выплаты единовременного пособия</h1>
-    <form id="registration-form">
+    <form id="registration-form" method="post">
 
       <fieldset class="container info">
         <legend class="subtitle">Сведения о заявителе</legend>
         <div class="container-data info__initials">
           <label for="surname">Фамилия
             <span class="required-field">*</span>
-            <input type="text" id="surname" name="surname-input" class="long-input" required>
+            <input type="text" id="surname" name="surname" class="long-input" required>
           </label>
           <label for="name">Имя
             <span class="required-field">*</span>
-            <input type="text" id="name" name="name-input" class="long-input" required>
+            <input type="text" id="name" name="name" class="long-input" required>
           </label>
           <label for="patronymic">Отчество
-            <input type="text" id="patronymic" name="patronymic-input"  class="long-input">
+            <input type="text" id="patronymic" name="patronymic"  class="long-input">
           </label>
           <div class="container-data__exta-item">
             <label for="status">Статус
               <span class="required-field">*</span>
-              <input type="text" id="status" name="status-input" class="average-input" required>
+              <input type="text" id="status" name="status" class="average-input" required>
             </label>
             <span class="status-hint">(не работающий, студент и т.д.)</span>
           </div>
@@ -39,7 +40,8 @@
           <legend class="subtitle-second">Документ, удостоверяющий личность</legend>
           <div class="container-data container-data-inside">
             <label for="document-type">Тип документа
-              <select name="document-select" id="document-type" class="long-input">
+              <span class="required-field">*</span>
+              <select name="document-type" id="document-type" class="long-input" required>
                 <option value="">(Выберите из списка)</option>
                 <option value="01">01 - паспорт гражданина Российской Федерации</option>
                 <option value="02">02 - свидетельство органов ЗАГСа, органа исполнительной власти или органа местного самоуправления о рождении гражданина</option>
@@ -56,62 +58,65 @@
                 <option value="13">13 - паспорт гражданина СССР образца 1974 г. для некоторый категорий иностранных граждан и лиц без гражданства</option>
               </select>
             </label>
-            <label for="document-series">Серия
-              <input type="number" id="document-series" name="document-series-input" class="short-input" required>
+            <label for="document-series" class="series">Серия
+              <span class="required-field hidden">*</span>
+              <input type="number" id="document-series" name="document-series" class="short-input">
             </label>
             <label for="document-number">Номер
               <span class="required-field">*</span>
-              <input type="number" id="document-number" name="document-number-input" class="short-input" required>
+              <input type="number" id="document-number" name="document-number" class="short-input" required>
             </label>
             <label for="date-issue">Дата выдачи
               <span class="required-field">*</span>
-              <input type="date" id="date-issue" name="date-issue-input" class="short-input" required>
+              <input type="date" id="date-issue" name="date-issue" class="short-input" required>
             </label>
             <label for="issued-by">Кем выдан
               <span class="required-field">*</span>
-              <textarea name="issued-by-input" id="issued-by" class="long-input"></textarea>
+              <textarea name="issued-by" id="issued-by" class="long-input" required></textarea>
             </label>
           </div>
         </fieldset>
 
-        <div class="container-data info__address">
-          <div class="container-data__exta-item">
-            <label for="address-regist">Адрес регистрации
-              <span class="required-field">*</span>
-              <textarea name="address-regist-input" id="address-regist" class="long-input"></textarea>
-            </label>
-          </div>
+        <fieldset class="container-data container-address-regist no-border">
+          <label for="address-regist">Адрес регистрации
+            <span class="required-field">*</span>
+            <textarea name="address-regist" id="address-regist" class="long-input" required></textarea>
+          </label>
           <div class="btn">
             <button>Очистить</button>
             <button>Выбрать из справочника</button>
           </div>
-          <label for="apartment-number">Квартира
-            <input type="number" id="apartment-number" name="apartment-number-input" class="short-input">
+          <label for="apartment">Квартира
+            <input type="number" id="apartment" name="apartment" class="short-input">
           </label>
-          <label for="same-address" class="dist-bottom long-input">
-            <input type="checkbox" name="same-address-checkbox" id="same-address">
+          <label for="checkbox-address" class="extra-bottom long-input">
+            <input type="checkbox" name="checkbox-address" id="checkbox-address">
             Адрес регистрации совпадает с почтовым адресом
           </label>
-          <div class="container-data__exta-item">
-            <label for="address-mail">Почтовый адрес
-              <span class="required-field">*</span>
-              <textarea name="address-mail-input" id="address-mail" class="long-input"></textarea>
-            </label>
-          </div>
-          <div class="btn">
+        </fieldset>
+
+        <fieldset class="container-data container-address-mail no-border">
+          <label for="address-mail">Почтовый адрес
+            <span class="required-field">*</span>
+            <textarea name="address-mail" id="address-mail" class="long-input" required></textarea>
+          </label>
+          <div class="btn btn-address-mail">
             <button>Очистить</button>
             <button>Выбрать из справочника</button>
           </div>
-          <label for="apartment-number">Квартира
-            <input type="number" id="apartment-number" name="apartment-number-input" class="short-input">
+          <label for="apartment" class="apartment-address-mail">Квартира
+            <input type="number" id="apartment" name="apartment" class="short-input">
           </label>
+        </fieldset>
+
+        <fieldset class="container-data container-contacts no-border">
           <label for="email" class="email-input">E-mail
             <input type="email" id="email" name="email-input" class="average-input">
           </label>
           <label for="phone-number">Телефон(ы)
             <input type="tel" id="phone-number" name="phone-number-input" class="average-input" placeholder="+7 (xхx) xxx-xx-xx">
           </label>
-        </div>
+        </fieldset>
       </fieldset>
 
       <fieldset class="container statement">
@@ -140,65 +145,65 @@
         </fieldset>
 
         <div class="container-data organization">
-          <div class="container-organization dist-bottom">
+          <div class="container-organization extra-bottom">
             <p class="text-layout">Единовременное<br> пособие при рождении<br> ребенка прошу<br> перечислять через</p>
             <span class="required-field">*</span>
             <div class="organization-radio long-input">
-              <label for="organization-first">
-                <input type="radio" id="organization-first" name="radio-btn"
-                class="organization-first-type">организацию федеральной почтовой связи
+              <label for="organization-post">
+                <input type="radio" id="organization-post" name="payment_method"
+                class="organization-post-type" value="post" required>организацию федеральной почтовой связи
               </label>
-              <label for="organization-second">
-                <input type="radio" id="organization-second" name="radio-btn"
-                class="organization-second-type">кредитную организацию
+              <label for="organization-bank">
+                <input type="radio" id="organization-bank" name="payment_method"
+                class="organization-bank-type" value="bank" required>кредитную организацию
               </label>
             </div>
           </div>
-          <label for="organization-number" class="text-layout">Номер организации<br> федеральной почтовой<br> связи
+          <label for="organization-number" class="organization-number-post text-layout hidden">Номер организации<br> федеральной почтовой<br> связи
             <span class="required-field">*</span>
-            <input type="number" id="organization-number" name="organization-number-input" class="short-input">
+            <input type="number" id="organization-number" name="organization-number" class="short-input">
           </label>
         </div>
 
-        <fieldset class="container-second">
+        <fieldset class="container-second account-details hidden">
           <legend class="subtitle-second">Реквизиты моего счета</legend>
-          <div class="container-data container-data-inside account">
+          <div class="container-data container-data-inside">
             <label for="account-number">Номер
               <span class="required-field">*</span>
-              <input type="number" id="account-number" name="account-number-input" class="short-input">
+              <input type="number" id="account-number" name="account-number" class="short-input">
             </label>
-            <div class="container-data__exta-item dist-bottom">
+            <div class="container-data__exta-item extra-bottom">
               <label for="name-bank" class="text-layout">Наименование<br> банковской организации
                 <span class="required-field">*</span>
-                <input type="text" id="name-bank" name="name-bank-input" class="long-input" required>
+                <input type="text" id="name-bank" name="name-bank" class="long-input">
               </label>
               <span class="status-hint">(наименование банковской организации и его номер)</span>
             </div>
-            <label for="branch-number">Номер филиала
-              <input type="number" id="branch-number" name="branch-number-input" class="short-input">
+            <label for="branch-number">№ филиала
+              <input type="number" id="branch-number" name="branch-number" class="short-input">
             </label>
             <label for="bic-number">БИК
               <span class="required-field">*</span>
-              <input type="number" id="bic-number" name="bic-number-input" class="average-input">
+              <input type="number" id="bic-number" name="bic-number" class="average-input">
             </label>
             <label for="inn-number">ИНН
               <span class="required-field">*</span>
-              <input type="number" id="inn-number" name="inn-number-input" class="average-input">
+              <input type="number" id="inn-number" name="inn-number" class="average-input">
             </label>
             <label for="kpp-number">КПП
               <span class="required-field">*</span>
-              <input type="number" id="kpp-number" name="kpp-number-input" class="average-input">
+              <input type="number" id="kpp-number" name="kpp-number" class="average-input">
             </label>
           </div>
         </fieldset>
-        <div class="checkbox">
-          <label for="checkbox-first" class="dist-bottom">
+        <div class="container-checkbox">
+          <label for="confirm" class="extra-bottom">
             <span class="required-field">*</span>
-            <input type="checkbox" name="checkbox-first" id="checkbox-first">
+            <input type="checkbox" name="confirm" id="confirm" required>
             в случае наступления обстоятельств, влекущих прекращение выплаты, обязуюсь сообщить о них в<br> органы социальной защиты в 5-дневный срок
           </label>
-          <label for="checkbox-second" class="dist-bottom checkbox-second-item">
-            <input type="checkbox" name="checkbox-second" id="checkbox-second">
+          <label for="no-employment-history" class="extra-bottom checkbox-second-item">
+            <input type="checkbox" name="no-employment-history" id="no-employment-history">
             отсутствует трудовая книжка
           </label>
         </div>
@@ -210,18 +215,19 @@
           <label for="identity" class="file-upload-text">Документ, подтверждающего личность
             <span class="required-field dist-file-upload">*</span>
             <button class="file-upload-button">Прикрепить</button>
-            <input type="file" id="identity" class="file-upload-input">
+            <input type="file" id="identity" class="file-upload-input hidden">
           </label>
         </div>
       </fieldset>
 
-      <div class="container submit-form">
+      <div class="container no-border">
         <div class="container-data submit-form-details">
-          <button>Отправить</button>
+          <button type="submit" class="btn-submit">Отправить</button>
         </div>
       </div>
     </form>
   </main>
-  
+
+  <script src="./index.js"></script>
 </body>
 </html>
