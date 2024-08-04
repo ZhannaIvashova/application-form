@@ -1,16 +1,15 @@
 $(document).ready(function() {
   $('select[name="document-type"]').change(checkDocumentType);
   $('input[name="checkbox-address"]').change(checkAddressRegistration);
-  
+
   $('input[name="payment_method"]').change(function() {
     checkPaymentMethod.call(this);
   });
-  
-  //Обработчик для кнопки "Прикрепить"
-  $('.file-upload-button').click(function() {
-    $('#identity').click();
-  });
-  
+
+  $('.btn-click').click(function() {
+    handlerButtons.call(this);
+  })
+
   //Отправка формы с проверкой на документ, подтверждающий личность
   $('#registration-form').submit(function(evt) {
     evt.preventDefault();
@@ -104,4 +103,11 @@ function isDateValid(dates) {
     }
   })
   return isValid
+}
+
+//Обработчик для кнопок
+function handlerButtons() {
+  if ($(this).hasClass('btn-clean-address')) $('#address-regist').val('')
+  else if ($(this).hasClass('btn-clean-mail')) $('#address-mail').val('')
+  else if ($(this).hasClass('file-upload-button')) $('#identity').click();
 }
